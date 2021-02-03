@@ -1,6 +1,7 @@
 
 let { Octokit } = require("@octokit/rest")
-let config = require("./../../.quartzum.json")
+
+let config = {}
 let chalk = require("chalk")
 let repo_uri = "https://api.github.com/repos/"
 exports.opened = (obj, auth) =>{
@@ -19,7 +20,8 @@ let date = String(new Date()).split(" GMT")[0]
 let path = user_path+"/"+repo_path +"/"+issue_num
 console.log(
   chalk.yellow(
-date +": "+"Adding label "+chalk.blue(label)+" to "+path)
+date +": "+"Adding label "+chalk.blue(label)+" to "+path
+))
 
 Octon.issues.addLabels({
   owner: user_path,
