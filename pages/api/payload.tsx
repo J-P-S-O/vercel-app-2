@@ -1,9 +1,9 @@
 
 let minimist = require("minimist")
-let issues = require("./../quartzum/lib/issues/lib")
-let pull = require("./../quartzum/lib/pull/lib")
-  pull.commented = require("./../quartzum/lib/pull/commented").main;
-  issues.comment = require("./../quartzum/lib/issues/commented").main;
+let issues = require("./../../quartzum/lib/issues/lib")
+let pull = require("./../../quartzum/lib/pull/lib")
+  pull.commented = require("./../../quartzum/lib/pull/commented").main;
+  issues.comment = require("./../../quartzum/lib/issues/commented").main;
 
 let runner = (obj, token) => {
     //console.log(token)
@@ -39,6 +39,6 @@ return <h1>Required method: post</h1>
 }
     console.log([req.method, req.path, req.body.action].join(" "));
     return runner(req.body, process.env.QUARTZUM_TOKEN);
-    
+
   };
 export default handler
