@@ -1,18 +1,12 @@
- let handler = function(req, res) {
-	res.statusCode = 200
-    console.log([req.method, req.path, req.body.action].join(" "));
-    return runner(req.body, process.env.QUARTZUM_TOKEN);
-    
-  };
-export default handler
+
 let minimist = require("minimist")
-let issues = require("./../quartzum/issues/lib")
-let pull = require("./../quartzum/pull/lib")
-  pull.commented = require("./../quartzum/pull/commented").main;
-  pull.created = require("./../quartzum/pull/created").main;
-  issues.comment = require("./../quartzum/issues/commented").main;
-  issues.commented = require("./../quartzum/issues/commented");
-  let runner = (obj, token) => {
+let issues = require("./../quartzum/lib/issues/lib")
+let pull = require("./../quartzum/lib/pull/lib")
+  pull.commented = require("./../quartzum/lib/pull/commented").main;
+  pull.created = require("./../quartzum/lib/pull/created").main;
+  issues.comment = require("./../quartzum/lib/issues/commented").main;
+
+let runner = (obj, token) => {
     //console.log(token)
     if (typeof obj === "string") {
       obj = JSON.parse(obj);
@@ -40,3 +34,10 @@ let pull = require("./../quartzum/pull/lib")
 		return "Something went wrong: "+ e.code+ e.message
 	}
   };
+ let handler = function(req, res) {
+	res.statusCode = 200
+    console.log([req.method, req.path, req.body.action].join(" "));
+    return runner(req.body, process.env.QUARTZUM_TOKEN);
+    
+  };
+export default handler
