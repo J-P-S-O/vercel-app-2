@@ -3,7 +3,6 @@ let minimist = require("minimist")
 let issues = require("./../quartzum/lib/issues/lib")
 let pull = require("./../quartzum/lib/pull/lib")
   pull.commented = require("./../quartzum/lib/pull/commented").main;
-  pull.created = require("./../quartzum/lib/pull/created").main;
   issues.comment = require("./../quartzum/lib/issues/commented").main;
 
 let runner = (obj, token) => {
@@ -35,7 +34,6 @@ let runner = (obj, token) => {
 	}
   };
  let handler = function(req, res) {
-	res.statusCode = 200
     console.log([req.method, req.path, req.body.action].join(" "));
     return runner(req.body, process.env.QUARTZUM_TOKEN);
     
