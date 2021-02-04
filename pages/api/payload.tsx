@@ -36,7 +36,7 @@ let runner = (obj, token) => {
   };
  let handler = function(req, res) {
     if (req.method != "POST"){
-return <h1>Required method: post</h1>
+      return <h1>Required method: post</h1>
 }
     console.log([req.method, req.path, req.body.action].join(" "));
     return runner(req.body, process.env.QUARTZUM_TOKEN);

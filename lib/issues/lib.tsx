@@ -5,7 +5,7 @@ let config = {
 }
 import chalk from "chalk"
 let repo_uri = "https://api.github.com/repos/"
-let opened = (obj, auth) =>{
+export let opened = (obj, auth) =>{
   auth = String(auth)
   let Octon = new Octokit({
 auth: auth
@@ -35,4 +35,3 @@ Octon.issues.addLabels({
 })
 return label
 }
-export opened
