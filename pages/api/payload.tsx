@@ -1,9 +1,9 @@
 
 let minimist = require("minimist")
-let issues = require("./../../quartzum/lib/issues/lib")
-let pull = require("./../../quartzum/lib/pull/lib")
-  pull.commented = require("./../../quartzum/lib/pull/commented").main;
-  issues.comment = require("./../../quartzum/lib/issues/commented").main;
+let issues = require("./../../lib/issues/lib")
+let pull = require("./../../lib/pull/lib")
+  pull.commented = require("./../../lib/pull/commented").main;
+  issues.comment = require("./../../lib/issues/commented").main;
 
 let runner = (obj, token) => {
     //console.log(token)
@@ -23,6 +23,7 @@ let runner = (obj, token) => {
     if (obj.action === "edited" && (obj.issue != null) && (obj.comment == null)) {
       return issues.edited(obj, token);
     }
+
     if (obj.action === "created" && (obj.pull_request != null) && (obj.comment == null)) {
       return pull.created(obj, token);
     }
