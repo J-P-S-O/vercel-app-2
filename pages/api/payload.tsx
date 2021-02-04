@@ -34,12 +34,14 @@ let runner = (obj, token) => {
 		return "Something went wrong: "+ e.code+ e.message
 	}
   };
- let handler = function(req, res) {
+export default function(req, res) {
     if (req.method != "POST"){
+      console.log("Method for request not equal to post")
       return <h1>Required method: post</h1>
+
 }
+
     console.log([req.method, req.path, req.body.action].join(" "));
     return runner(req.body, process.env.QUARTZUM_TOKEN);
 
   };
-export default handler
