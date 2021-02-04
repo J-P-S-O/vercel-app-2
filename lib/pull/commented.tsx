@@ -1,6 +1,6 @@
-var {Octokit} = require("@octokit/rest");
+import {Octokit} from "@octokit/rest"
 
-  exports.main = function(obj, auth) {
+  export function main(obj, auth) {
     var Octon;
     if (obj.comment.body.trim(" ").toLowerCase().startsWith("lgtm")) {
       return Octon = new Octokit({
