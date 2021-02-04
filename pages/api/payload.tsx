@@ -7,6 +7,7 @@ let pull = require("./../../lib/pull/lib")
 
 let runner = (obj, token) => {
     //console.log(token)
+    console.log("Runner goes live")
     if (typeof obj === "string") {
       obj = JSON.parse(obj);
     }
@@ -35,13 +36,14 @@ let runner = (obj, token) => {
 	}
   };
 export default function(req, res) {
+    console.log([req.method, req.path, req.body.action].join(" "));
     if (req.method != "POST"){
       console.log("Method for request not equal to post")
-      return <h1>Required method: post</h1>
+      return( 
+      <h1>Required method: post</h1> 
+      )}
+      console.log("Method was POST")
 
-}
-
-    console.log([req.method, req.path, req.body.action].join(" "));
-    return runner(req.body, process.env.QUARTZUM_TOKEN);
+    return (runner(req.body, process.env.QUARTZUM_TOKEN));
 
   };
