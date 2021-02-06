@@ -1,0 +1,1 @@
+window.location = "https://github.com/j-p-s-o/quartzum"
