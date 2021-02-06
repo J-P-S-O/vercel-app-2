@@ -44,7 +44,7 @@ let runner = (obj, token) => {
     }
   };
 export default function(req, res) {
-    console.log([req.method, req.body.action].join(" "));
+    console.log([req.method, req.headers["X-Github-Action"], req.body.action].join(" "));
     if (req.method != "POST"){
       console.log("Method for request not equal to post")
       res.json({
