@@ -32,18 +32,33 @@ let runner = (obj, token) => {
       return pull.commented(obj, token);
     }
 	}catch(e){
-		return "Something went wrong: "+ e.code+ e.message
-	}
+		return {
+            code: 500,
+            error: e.code,
+            message: e.message
+        }
+    }
+    return {
+        code: 201,
+        message:"ENOACTION"
+    }
   };
 export default function(req, res) {
-    console.log([req.method, req.path, req.body.action].join(" "));
+    console.log([req.method, req.body.action].join(" "));
     if (req.method != "POST"){
       console.log("Method for request not equal to post")
-      return( 
-      <h1>Required method: post</h1> 
-      )}
-      console.log("Method was POST")
+      res.json({
+          status: "error",
+          code: 405,
+          message:"Method must be POST"
+      })
+      return null;
+    }
+    console.log("Method was POST")
 
-    return (runner(req.body, process.env.QUARTZUM_TOKEN));
+    res.json(
+        runner(req.body, process.env.QUARTZUM_TOKEN)
+        );
+    return null;
 
   };
